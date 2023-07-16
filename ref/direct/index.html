@@ -1,0 +1,90 @@
+<head>
+    <link rel="stylesheet" href="../../style.css">
+    <title>Fireside Fellowship</title>
+    <link rel="icon" type="image/x-icon" href="../../favicon.png">
+</head>
+
+<script type="module">
+    // Import the functions you need from the SDKs you need
+    import { initializeApp } from "https://www.gstatic.com/firebasejs/9.17.2/firebase-app.js";
+    import { getAnalytics } from "https://www.gstatic.com/firebasejs/9.17.2/firebase-analytics.js";
+    // TODO: Add SDKs for Firebase products that you want to use
+    // https://firebase.google.com/docs/web/setup#available-libraries
+
+    // Your web app's Firebase configuration
+    // For Firebase JS SDK v7.20.0 and later, measurementId is optional
+    const firebaseConfig = {
+        apiKey: "AIzaSyByd5S77AeqNX7qmBhFJiKBwT5-ied1xPc",
+        authDomain: "fireside-f0ae6.firebaseapp.com",
+        projectId: "fireside-f0ae6",
+        storageBucket: "fireside-f0ae6.appspot.com",
+        messagingSenderId: "942466228533",
+        appId: "1:942466228533:web:7238c07cb3ec3c9ef22c7c",
+        measurementId: "G-2NRSBS4031"
+    };
+
+    // Initialize Firebase
+    const app = initializeApp(firebaseConfig);
+    const analytics = getAnalytics(app);
+    document.getElementById("submit-button").addEventListener("click", submitted);
+    const form = document.querySelector("#form")
+    const submitButton = document.querySelector("#submit")
+    const scriptURL = 'https://script.google.com/macros/s/AKfycbzFGNNkkDOlCJFdm9X11lFOzmQnvgpkm-Nfyh06bk-Z9o0gxxkssTFARcQ8QnOrwdieKA/exec'
+    form.addEventListener('submit', e => {
+      submitButton.disabled = true
+      e.preventDefault()
+      let requestBody = new FormData(form)
+      fetch(scriptURL, { method: 'POST', body: requestBody })
+        .then(response => {
+          alert('Success!', response)
+          submitButton.disabled = false
+        })
+        .catch(error => {
+          alert('Error!', error.message)
+          submitButton.disabled = false
+        }
+        )
+    })
+</script>
+
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-ZSN1YB1WZQ"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag() { dataLayer.push(arguments); }
+  gtag('js', new Date());
+
+  gtag('config', 'G-ZSN1YB1WZQ');
+</script>
+
+<body>
+    <div id="header-section">
+        <a href="https://fireside.bio"><img id="header-logo" src="../../logo.svg"></a>
+        <a id="events-link" target="_blank">
+            <h1 id="events">Events</h1>
+        </a>
+    </div>
+    <div class="center-content">
+        <h1 id="title-text" style = "margin-bottom: 2vw;">Apply <span id="fancy-story">now</span>.</h1>
+        <div class="mobile-buttons" id="paragraph-container">
+            <div id='input-field-container'>
+                <form class="input-form" method="POST"
+                    action="https://script.google.com/macros/s/AKfycbwsc3alFRuAFUNuQgb7vQUPTT3zGK3U1tz6eTvQTIrN_v2qpDUzBjPV0RgI-HQzjm9Owg/exec"
+                    target="iframe">
+                    <input class="text-input" placeholder="Full name" type="text" name="Name">
+                    <input class="text-input" placeholder="University/Company" type="text" name="University">
+                    <input class="text-input" placeholder="Email" type="text" name="Email">
+                    <input class="text-input" placeholder="Linkedin URL" type="text" name="LinkedIn">
+                    <input class="text-input" id ="time-input" type="text" name="TimeSubmitted">
+                    <input class="text-input" id ="time-input" type="text" name="Referral" value = "Direct">
+                    <br>
+                    <input class = "cool-button" id="submit-button" value="Submit" type="submit">
+                </form>
+            </div>
+            <iframe name="iframe" style="position: absolute; visibility: hidden"></iframe>
+        </div>
+
+        <p id="contact-us"><a href="mailto:firesidebio@gmail.com" id="contact-text">Contact Us</a></p>
+    </div>
+</body>
+
+<script src="../../script.js"></script>
